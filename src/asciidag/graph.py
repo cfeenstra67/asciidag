@@ -486,8 +486,10 @@ class Graph(object):  # pylint: disable=too-many-instance-attributes,bad-option-
         num_dashes = ((self.num_parents - dashless_commits) * 2) - 1
         for i in range(num_dashes):
             col_num = i // 2 + dashless_commits + self.commit_index
+            col_num = min(col_num, self.num_new_columns - 1)
             self._write_column(self.new_columns[col_num], '-')
         col_num = num_dashes // 2 + dashless_commits + self.commit_index
+        col_num = min(col_num, self.num_new_columns - 1)
         self._write_column(self.new_columns[col_num], '.')
         return num_dashes + 1
 
